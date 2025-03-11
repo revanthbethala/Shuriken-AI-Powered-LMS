@@ -105,7 +105,7 @@ Shuriken E-Learning is an AI-powered interactive platform designed to enhance ed
    ```
    ```sh
    # Start Flask backend
-   cd flask-backend
+   cd ai
    python app.py
    ```
 

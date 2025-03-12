@@ -6,6 +6,7 @@ import { UserButton, useUser } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { BASE_URL } from "@/data";
+import LanguageTranslator from "./GoogleTranslate";
 
 function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
@@ -95,7 +96,7 @@ function DesktopNav({ selectedRole }: DesktopNavInterface) {
   const { isLoaded, isSignedIn } = useUser();
   return (
     <>
-      <ul className="hidden md:flex gap-4 items-center">
+      <ul className="hidden md:flex gap-1 items-center">
         {[
           "",
           "assessments",
@@ -112,9 +113,9 @@ function DesktopNav({ selectedRole }: DesktopNavInterface) {
           </NavLink>
         ))}
         <NavLink to="/dsa">
-          {" "}
           <li className="li-style">DSA Visualizer</li>
         </NavLink>
+        <LanguageTranslator/>
       </ul>
       {isLoaded && isSignedIn && <ShuriCoins />}
       <p className="hidden lg:flex">
@@ -128,7 +129,8 @@ function DesktopNav({ selectedRole }: DesktopNavInterface) {
                 : "recruiter/dashboard"
             }
           >
-            <Button>My Dashboard</Button>
+            <Button>Dashboard</Button>
+
           </NavLink>
         )}
       </p>

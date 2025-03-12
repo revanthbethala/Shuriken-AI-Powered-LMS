@@ -308,7 +308,7 @@ const CourseProgress = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "https://shurikenai.vercel.app/transcribe",
+        "http://localhost:5000/transcribe",
         { video_url: currentLecture.videoUrl },
         { headers: { "Content-Type": "application/json" } }
       );

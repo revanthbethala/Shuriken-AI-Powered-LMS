@@ -30,26 +30,27 @@ const FaceDetection = () => {
         setMessage("Failed to load models.");
       }
     };
+    const startVideo = async () => {
+      setIsLoading(true);
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+        });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+        setMessage("Camera Started...");
+        detectFaces();
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error accessing webcam:", error);
+        setMessage("Failed to access webcam.");
+        setIsLoading(false);
+      }
+    };
 
     loadModels();
   }, []);
-
-  const startVideo = async () => {
-    setIsLoading(true);
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-      }
-      setMessage("Camera Started...");
-      detectFaces();
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error accessing webcam:", error);
-      setMessage("Failed to access webcam.");
-      setIsLoading(false);
-    }
-  };
 
   const detectFaces = async () => {
     if (!videoRef.current || !canvasRef.current) return;

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Globe } from "lucide-react"; // Globe icon from Lucide React
 
 const GoogleTranslate = () => {
-  const [language, setLanguage] = useState(""); // Default: English
+  const [language, setLanguage] = useState("en"); // Default: English
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const apiKey = "b227f7b21dmshe5456f4842e2431p157710jsn6d20221d25cc"; // Replace with your actual API key
 
@@ -70,9 +70,7 @@ const GoogleTranslate = () => {
 
   // Automatically translate when language is changed
   useEffect(() => {
-    if (language !== "en") {
       translatePage(language);
-    }
   }, [language]);
 
   return (
@@ -96,6 +94,15 @@ const GoogleTranslate = () => {
               { code: "es", label: "🇪🇸 Spanish" },
               { code: "de", label: "🇩🇪 German" },
               { code: "hi", label: "🇮🇳 Hindi" },
+              { code: "ta", label: "🇮🇳 Tamil" },
+              { code: "te", label: "🇮🇳 Telugu" },
+              { code: "ml", label: "🇮🇳 Malayalam" },
+              { code: "mr", label: "🇮🇳 Marathi" },
+              { code: "bn", label: "🇮🇳 Bengali" },
+              { code: "gu", label: "🇮🇳 Gujarati" },
+              { code: "kn", label: "🇮🇳 Kannada" },
+              { code: "pa", label: "🇮🇳 Punjabi" },
+              { code: "ur", label: "🇮🇳 Urdu" },
             ].map(({ code, label }) => (
               <li key={code}>
                 <button

@@ -23,7 +23,7 @@ import Jobs from "./pages/Jobs";
 import JobCards from "./Jobs/JobCards";
 import JobDetails from "./Jobs/JobDetails";
 import ProtectedRoute from "./pages/ProtectedRoute";
-import InstructorForm from "./Instructor/InstructorForm";
+// import InstructorForm from "./Instructor/InstructorForm";
 import AddCourse from "./Instructor/course/AddCourse";
 import EditCourse from "./Instructor/course/EditCourse";
 import InstructorDashboard from "./Instructor/InstDashboard";
@@ -204,10 +204,10 @@ function App() {
         {
           path: "instructor",
           children: [
-            {
-              path: "",
-              element: <InstructorForm />,
-            },
+            // {
+            //   path: "",
+            //   element: <InstructorForm />,
+            // },
             {
               path: "dashboard",
               element: <InstructorDashboard />,

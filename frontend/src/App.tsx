@@ -54,9 +54,8 @@ const Layout = () => (
     <Outlet />
   </>
 );
-function App() {
+export default function App() {
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-  
 
   const router = createBrowserRouter([
     {
@@ -66,17 +65,15 @@ function App() {
         { path: "", element: <Home /> },
         {
           path: "resume",
-          element: <Resume />,
+          element: (
+            <ProtectedRoute>
+              <Resume />
+            </ProtectedRoute>
+          ),
           children: [
             { path: "", element: <ResumeLandingPage /> },
-            {
-              path: "resume-builder",
-              element: <ResumeBuilder />,
-            },
-            {
-              path: "resume-analyzer",
-              element: <ResumeAnalyzer />,
-            },
+            { path: "resume-builder", element: <ResumeBuilder /> },
+            { path: "resume-analyzer", element: <ResumeAnalyzer /> },
           ],
         },
         {
@@ -87,18 +84,9 @@ function App() {
             </ProtectedRoute>
           ),
           children: [
-            {
-              path: "",
-              element: <AssessmentForm />,
-            },
-            {
-              path: "instructions",
-              element: <AssessmentInstructions />,
-            },
-            {
-              path: "start/:id",
-              element: <AssessmentQuestions />,
-            },
+            { path: "", element: <AssessmentForm /> },
+            { path: "instructions", element: <AssessmentInstructions /> },
+            { path: "start/:id", element: <AssessmentQuestions /> },
           ],
         },
         {
@@ -109,22 +97,9 @@ function App() {
             </ProtectedRoute>
           ),
           children: [
-            {
-              path: "",
-              element: <MockInterviewForm />,
-            },
-            {
-              path: "instructions",
-              element: <MockInterviewInstructions />,
-            },
-            {
-              path: "start/",
-              element: <MockInterviewQuestions />,
-            },
-            // {
-            //   path: "results/",
-            //   element: <MockInterviewResult />,
-            // },
+            { path: "", element: <MockInterviewForm /> },
+            { path: "instructions", element: <MockInterviewInstructions /> },
+            { path: "start/", element: <MockInterviewQuestions /> },
           ],
         },
         {
@@ -136,29 +111,19 @@ function App() {
           ),
           children: [
             { path: "", element: <Course /> },
-            {
-              path: "course-detail/:id",
-              element: <CourseDetails />,
-            },
+            { path: "course-detail/:id", element: <CourseDetails /> },
             {
               path: "checkout/:courseId",
               element: (
-                <Elements stripe={stripePromise} >
-                  <Checkout/>
-              </Elements>
+                <Elements stripe={stripePromise}>
+                  <Checkout />
+                </Elements>
               ),
             },
-            {
-              path: "course-progress/:courseId",
-              element: <CourseProgress />,
-            },
-            {
-              path: ":id/instructorInfo",
-              element: <InstructorInfo />,
-            },
+            { path: "course-progress/:courseId", element: <CourseProgress /> },
+            { path: ":id/instructorInfo", element: <InstructorInfo /> },
           ],
         },
-
         {
           path: "jobs",
           element: (
@@ -167,22 +132,10 @@ function App() {
             </ProtectedRoute>
           ),
           children: [
-            {
-              path: "",
-              element: <JobCards />,
-            },
-            {
-              path: "job-detail/:jobId",
-              element: <JobDetails />,
-            },
-            {
-              path: "jobForm",
-              element: <JobForm />,
-            },
-            {
-              path: "job-search",
-              element: <JobSearch />,
-            },
+            { path: "", element: <JobCards /> },
+            { path: "job-detail/:jobId", element: <JobDetails /> },
+            { path: "jobForm", element: <JobForm /> },
+            { path: "job-search", element: <JobSearch /> },
           ],
         },
         {
@@ -194,7 +147,7 @@ function App() {
           ),
         },
         {
-          path: "/compiler",
+          path: "compiler",
           element: (
             <ProtectedRoute>
               <Compiler />
@@ -204,29 +157,45 @@ function App() {
         {
           path: "instructor",
           children: [
-            // {
-            //   path: "",
-            //   element: <InstructorForm />,
-            // },
             {
               path: "dashboard",
-              element: <InstructorDashboard />,
+              element: (
+                <ProtectedRoute>
+                  <InstructorDashboard />
+                </ProtectedRoute>
+              ),
             },
             {
               path: "addCourse",
-              element: <AddCourse />,
+              element: (
+                <ProtectedRoute>
+                  <AddCourse />
+                </ProtectedRoute>
+              ),
             },
             {
               path: "course/:id",
-              element: <EditCourse />,
+              element: (
+                <ProtectedRoute>
+                  <EditCourse />
+                </ProtectedRoute>
+              ),
             },
             {
               path: "course/:id/lecture",
-              element: <CreateLecture />,
+              element: (
+                <ProtectedRoute>
+                  <CreateLecture />
+                </ProtectedRoute>
+              ),
             },
             {
               path: "course/:id/lecture/:lectureId",
-              element: <EditLecture />,
+              element: (
+                <ProtectedRoute>
+                  <EditLecture />
+                </ProtectedRoute>
+              ),
             },
           ],
         },
@@ -235,36 +204,54 @@ function App() {
           children: [
             {
               path: "",
-              element: <CreateCompany />,
+              element: (
+                <ProtectedRoute>
+                  <CreateCompany />
+                </ProtectedRoute>
+              ),
             },
             {
               path: "dashboard",
-              element: <RecruiterDashboard />,
+              element: (
+                <ProtectedRoute>
+                  <RecruiterDashboard />
+                </ProtectedRoute>
+              ),
             },
             {
               path: "editCompany/:companyId",
-              element: <EditCompany />,
+              element: (
+                <ProtectedRoute>
+                  <EditCompany />
+                </ProtectedRoute>
+              ),
             },
             {
               path: ":companyId/createJob",
-              element: <CreateJobs />,
+              element: (
+                <ProtectedRoute>
+                  <CreateJobs />
+                </ProtectedRoute>
+              ),
             },
             {
               path: "companies",
-              element: <CompanyTable />,
+              element: (
+                <ProtectedRoute>
+                  <CompanyTable />
+                </ProtectedRoute>
+              ),
             },
           ],
         },
       ],
     },
-
     {
       path: "dsa",
       element: <DSAVisualizer />,
     },
     { path: "login", element: <Login /> },
     { path: "signup", element: <Signup /> },
-    // { path: "/user-preferences", element: <UserPreferences /> },
   ]);
 
   return (
@@ -274,5 +261,3 @@ function App() {
     </Suspense>
   );
 }
-
-export default App;

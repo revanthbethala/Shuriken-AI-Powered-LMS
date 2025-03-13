@@ -11,7 +11,7 @@ Shuriken E-Learning is an AI-powered interactive platform designed to enhance ed
 - **Mock Interviews** – Includes AI-driven face detection, speech recognition, and emotion analysis to enhance interview skills.
 - **Secure Online Exams** – AI-driven proctoring prevents cheating and ensures exam integrity.
 - **Video Summarization** – Uses AI to generate concise summaries of long educational videos, helping students grasp key concepts quickly.
-- **🌍 Language Translation** – Enables users to translate course content and UI into multiple languages, enhancing accessibility for non-native speakers.
+- **Language Translation** – Enables users to translate course content and UI into multiple languages, enhancing accessibility for non-native speakers.
 
 ### 📚 Instructor Dashboard
 
@@ -104,7 +104,7 @@ Shuriken E-Learning is an AI-powered interactive platform designed to enhance ed
    ```
    ```sh
    # Backend (Flask)
-   cd flask-backend
+   cd ai
    pip install -r requirements.txt
    ```
 3. **Run the application**
